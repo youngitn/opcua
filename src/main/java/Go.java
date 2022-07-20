@@ -3,7 +3,6 @@ import java.time.Duration;
 import java.util.Collection;
 import java.util.Optional;
 
-import org.junit.Assert;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -12,7 +11,7 @@ import com.hurence.opc.OpcSession;
 import com.hurence.opc.OpcTagInfo;
 import com.hurence.opc.da.OpcDaConnectionProfile;
 import com.hurence.opc.da.OpcDaOperations;
-import com.hurence.opc.da.OpcDaTemplateTest;
+
 import com.hurence.opc.ua.OpcUaConnectionProfile;
 import com.hurence.opc.ua.OpcUaOperations;
 import com.hurence.opc.ua.OpcUaSessionProfile;
@@ -23,7 +22,7 @@ import io.reactivex.subscribers.TestSubscriber;
 public class Go {
 	private OpcDaOperations opcDaOperations;
 	private OpcDaConnectionProfile connectionProfile;
-	private final static Logger logger = LoggerFactory.getLogger(OpcDaTemplateTest.class);
+	private final static Logger logger = LoggerFactory.getLogger(Go.class);
 
 	private OpcUaConnectionProfile createProsysConnectionProfile() {
 		return (new OpcUaConnectionProfile()
@@ -53,7 +52,8 @@ public class Go {
 			/* Optional<OpcTagInfo> sint = */
 			// ret.stream().toList();
 			ret.stream().filter(t -> "Counter".equals(t.getName())).map(OpcTagInfo::getProperties)
-						.flatMap(Collection::stream).forEach(System.out::println);;
+					.flatMap(Collection::stream).forEach(System.out::println);
+			;
 //			ret.stream().filter(t -> "Counter".equals(t.getName())).map(t -> "" + t.getId() + " " + t.getProperties())
 //					.forEach(System.out::println);
 //			Assert.assertTrue(sint.isPresent());
